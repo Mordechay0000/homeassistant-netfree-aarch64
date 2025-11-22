@@ -1,0 +1,13 @@
+# Ignore everything
+*
+
+# Allow .gitignore
+!.gitignore
+
+# Allow HA project folder
+!netfree-python/
+!netfree-python/**
+
+# Allow Docker files
+!Dockerfile
+!compose.yaml
