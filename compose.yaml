@@ -9,15 +9,16 @@ services:
       - /home/ubuntu/homeassistant:/config
       - /etc/localtime:/etc/localtime:ro
       - /run/dbus:/run/dbus:ro
-      # for netfree ca on python3.**13**
-      - ./net-free-ca-python3.13-script.sh:/net-free-ca-python3.13-script.sh:ro
     restart: unless-stopped
     privileged: true
     network_mode: host
     devices:
       - /dev/ttyUSB0:/dev/ttyUSB0
     environment:
-      - REQUESTS_CA_BUNDLE=/usr/lib/ssl/certs/ca-certificates.crt
-      - NODE_EXTRA_CA_CERTS=/usr/lib/ssl/certs/ca-certificates.crt
-      - SSL_CERT_FILE=/usr/lib/ssl/certs/ca-certificates.crt
+      - REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
+      - NODE_EXTRA_CA_CERTS=/etc/ssl/certs/ca-certificates.crt
+      - SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
+      - CURL_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
+      - GIT_SSL_CAINFO=/etc/ssl/certs/ca-certificates.crt
+
     entrypoint: ["/bin/bash", "-x", "-c", "/init"]
